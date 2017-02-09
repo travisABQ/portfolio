@@ -25,7 +25,9 @@
       function initMap() {
         map = new google.maps.Map(document.getElementById('map'), {
           center: {lat: 38.980662, lng: -94.669952},
-          zoom: 8
+          zoom: 8,
+          mapTypeID: google.maps.MapTypeId.ROADS,
+                   
         });
       }
     </script>
@@ -33,3 +35,4 @@
     async defer></script>
   </body>
 </html>
+
