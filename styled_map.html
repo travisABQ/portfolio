@@ -28,7 +28,7 @@
           zoom: 8,
           mapTypeID: google.maps.MapTypeId.ROADS,
           styles:
-          [
+         [
   {
     "elementType": "geometry",
     "stylers": [
@@ -63,6 +63,15 @@
     ]
   },
   {
+    "featureType": "administrative.country",
+    "elementType": "geometry",
+    "stylers": [
+      {
+        "weight": 4.5
+      }
+    ]
+  },
+  {
     "featureType": "administrative.land_parcel",
     "elementType": "geometry.stroke",
     "stylers": [
@@ -90,6 +99,24 @@
     ]
   },
   {
+    "featureType": "landscape.natural.landcover",
+    "elementType": "geometry.fill",
+    "stylers": [
+      {
+        "visibility": "off"
+      }
+    ]
+  },
+  {
+    "featureType": "landscape.natural.terrain",
+    "elementType": "geometry.stroke",
+    "stylers": [
+      {
+        "weight": 0.5
+      }
+    ]
+  },
+  {
     "featureType": "poi",
     "elementType": "geometry",
     "stylers": [
@@ -104,6 +131,15 @@
     "stylers": [
       {
         "color": "#93817c"
+      }
+    ]
+  },
+  {
+    "featureType": "poi.government",
+    "elementType": "geometry.fill",
+    "stylers": [
+      {
+        "color": "#ffff00"
       }
     ]
   },
@@ -125,6 +161,15 @@
     "stylers": [
       {
         "color": "#447530"
+      }
+    ]
+  },
+  {
+    "featureType": "poi.sports_complex",
+    "elementType": "geometry.fill",
+    "stylers": [
+      {
+        "color": "#ff8000"
       }
     ]
   },
@@ -163,6 +208,15 @@
     "stylers": [
       {
         "color": "#f8c967"
+      }
+    ]
+  },
+  {
+    "featureType": "road.highway",
+    "elementType": "geometry.fill",
+    "stylers": [
+      {
+        "color": "#ff0000"
       }
     ]
   },
