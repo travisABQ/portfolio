@@ -22,15 +22,17 @@
     <div id="map"></div>
     <script>
       var map;
-      var pine = new google.maps.LatLng(34.374138,-111.443419)
-      function initMap() {
+        function initMap() {
+          var pine = google.maps.LatLng{34.374138,-111.443419}
+          
         map = new google.maps.Map(document.getElementById('map'), {
           center: {lat: 34.387123, lng: -111.452232},
           zoom: 12,
           mapTypeId: google.maps.MapTypeId.TERRAIN
           
           var pineMarker = new google.maps.Marker({
-           position: classroom,
+           position: pine,
+           map: map,
             title:"Pine Trailhead"
            });
          pineMarker.setMap(map);
