@@ -26,11 +26,10 @@
           var pine = {lat: 34.374138, lng: -111.443419};
           var brewery = {lat: 34.377285, lng: -111.449762};
           
-          var StartToFinish = [
+          var StartToFinishCoordinates = [
           {lat: 34.374138, lng: -111.443419},
           {lat: 34.377285, lng: -111.449762}
             ];
-
           
         map = new google.maps.Map(document.getElementById('map'), {
           center: {lat: 34.387123, lng: -111.452232},
@@ -69,6 +68,17 @@
           breweryMarker.addListener('click', function() {
           infoWindow2.open(map, breweryMarker);
           });
+          
+                var StartToFinish = new google.maps.Polyline({
+          path: StartToFinishCoordinates,
+          geodesic: true,
+          strokeColor: '#FF0000',
+          strokeOpacity: 1.0,
+          strokeWeight: 2
+        });
+
+        StartToFinish.setMap(map);
+ 
       }
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAEoCp2Q0T7pIYj3r_xswp2gqovmSXlZSY&callback=initMap"
