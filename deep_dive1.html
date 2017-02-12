@@ -51,6 +51,12 @@
             title: 'Pine Trailhead'
           });
           
+          var breweryMarker = new google.maps.Marker({
+          position: brewery,
+          map: map,
+            title: 'That Brewery & Pub'
+          });
+          
           pineMarker.addListener('click', function() {
           infoWindow.open(map, pineMarker);
           });
