@@ -32,10 +32,20 @@
           mapTypeId: google.maps.MapTypeId.TERRAIN
            });
           
+          var popupContent = 'Start of the Mogollon Monster 100 Mile Endurance Run';
+          
+          var infoWindow = new google.maps.InfoWindow({
+          content: popupContent
+          });
+          
           var pineMarker = new google.maps.Marker({
           position: pine,
           map: map,
             title: 'Pine Trailhead'
+          });
+          
+          marker.addListener('click', function() {
+          infowindow.open(map, marker);
           });
       }
     </script>
