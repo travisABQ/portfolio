@@ -26,6 +26,7 @@
           var pine = {lat: 34.374138, lng: -111.443419};
           var brewery = {lat: 34.377285, lng: -111.449762};
           var mogollonrim = {lat: 34.423393, lng: -111.386719};
+          var washingtonpark = {lat: 34.426937, lng: -111.263938};
           
           var StartToFinishCoordinates = [
           {lat: 34.374138, lng: -111.443419},
@@ -41,7 +42,7 @@
           var popupContent = 'Starting Line of the Mogollon Monster 100 Mile Endurance Run';
           var popupContent2 = 'Finish Line of the Mogollon Monster 100 Mile Endurance Run'; 
           var popupContent3 = 'Mogollon Rim - an ancient 200-mile-long escarpment that runners must ascend/descend'
-   
+          var popupContent4 = 'Washington Park - the first aid station (mile 10) where runners are able to rest, refuel, and resupply'
                   
              var infoWindow = new google.maps.InfoWindow({
               content: popupContent
@@ -52,6 +53,10 @@
          
                 var infoWindow3 = new google.maps.InfoWindow({
               content: popupContent3
+          });
+          
+          var infoWindow4 = new google.maps.InfoWindow({
+              content: popupContent4
           });
           
           var pineMarker = new google.maps.Marker({
@@ -72,6 +77,12 @@
             title: 'Mogollon Rim'
           });
           
+          var washingtonMarker = new google.maps.Marker({
+          position: washingtonpark,
+          map: map,
+            title: 'Washington Park Aid Station'
+          });
+          
           pineMarker.addListener('click', function() {
           infoWindow.open(map, pineMarker);
           });
@@ -82,6 +93,10 @@
           
           rimMarker.addListener('click', function() {
           infoWindow3.open(map, rimMarker);
+          });
+          
+          washingtonMarker.addListener('click', function() {
+          infoWindow4.open(map, washingtonMarker);
           });
                 var StartToFinish = new google.maps.Polyline({
           path: StartToFinishCoordinates,
