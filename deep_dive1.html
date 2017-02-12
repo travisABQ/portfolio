@@ -61,7 +61,7 @@
           infoWindow.open(map, pineMarker);
           });
 
-          breweryMarker = new google.maps.Marker({
+          breweryMarker.addListener('click', function() {
           infoWindow2.open(map, breweryMarker);
           });
       }
