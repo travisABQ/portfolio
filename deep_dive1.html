@@ -60,6 +60,10 @@
           pineMarker.addListener('click', function() {
           infoWindow.open(map, pineMarker);
           });
+
+          breweryMarker = new google.maps.Marker({
+          infoWindow.open(map, breweryMarker);
+          });
       }
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAEoCp2Q0T7pIYj3r_xswp2gqovmSXlZSY&callback=initMap"
