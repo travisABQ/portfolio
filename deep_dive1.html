@@ -25,6 +25,7 @@
         function initMap() {
           var pine = {lat: 34.374138, lng: -111.443419};
           var brewery = {lat: 34.377285, lng: -111.449762};
+          var mogollonrim = {lat: 34.423393, lng: -111.386719};
           
           var StartToFinishCoordinates = [
           {lat: 34.374138, lng: -111.443419},
@@ -39,6 +40,7 @@
           
           var popupContent = 'Starting Line of the Mogollon Monster 100 Mile Endurance Run';
           var popupContent2 = 'Finish Line of the Mogollon Monster 100 Mile Endurance Run'; 
+          var popupContent3 = 'Mogollon Rim - an ancient escarpment that runners must ascend/descend'
    
                   
              var infoWindow = new google.maps.InfoWindow({
@@ -48,6 +50,9 @@
               content: popupContent2
           });
          
+                var infoWindow3 = new google.maps.InfoWindow({
+              content: popupContent3
+          });
           
           var pineMarker = new google.maps.Marker({
           position: pine,
@@ -61,6 +66,12 @@
             title: 'That Brewery & Pub'
           });
           
+          var rimMarker = new google.maps.Marker({
+          position: mogollonrim,
+          map: map,
+            title: 'Mogollon Rim'
+          });
+          
           pineMarker.addListener('click', function() {
           infoWindow.open(map, pineMarker);
           });
@@ -69,6 +80,9 @@
           infoWindow2.open(map, breweryMarker);
           });
           
+          rimMarker.addListener('click', function() {
+          infoWindow3.open(map, rimMarker);
+          });
                 var StartToFinish = new google.maps.Polyline({
           path: StartToFinishCoordinates,
           geodesic: true,
