@@ -23,12 +23,23 @@
     <script>
       var map;
       function initMap() {
+        
+        var center = {lat: 36.060574, lng: -107.961692};
+        
+        ];
+        
         map = new google.maps.Map(document.getElementById('map'), {
           center: {lat: 36.060574, lng: -107.961692},
           zoom: 18,
-          mapTypeID: google.maps.MapTypeId.HYBRID,
+          mapTypeID: google.maps.MapTypeId.TERRAIN,
                    
         });
+        
+        var centerMarker = new google.maps.Marker({
+          position: center,
+          map: map,
+            title: 'Pueblo Bonito'
+          });
       }
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAEoCp2Q0T7pIYj3r_xswp2gqovmSXlZSY&callback=initMap"
