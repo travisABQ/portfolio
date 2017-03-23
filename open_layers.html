@@ -15,6 +15,15 @@
     <h2>Los Alamos, New Mexico</h2>
     <div id="map" class="map"></div>
     <script type="text/javascript">
+      
+      var Layer_Stamen_terrain = new ol.layer.Group({
+    layers: [
+        new ol.layer.Tile({
+            source: new ol.source.Stamen({layer: 'terrain'})
+        })
+    ]
+});
+
       var map = new ol.Map({
         target: 'map',
         layers: [
