@@ -19,11 +19,11 @@
 
       var map = new ol.Map({
         target: 'map',
-        layers: [
-          new ol.layer.Tile({
-            source: new ol.source.OSM()
-          })
-        ],
+       layers: [
+        new ol.layer.Tile({
+            source: new ol.source.Stamen({layer: 'terrain'})
+        })
+    ],
         view: new ol.View({
           center: ol.proj.fromLonLat([-106.298281, 35.892752]),
           zoom: 12
