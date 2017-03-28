@@ -16,6 +16,13 @@
     <div id="map" class="map"></div>
     <script type="text/javascript">
       
+      var myOverviewMap = new ol.control.OverviewMap ({collapsible:false, collapsed:false})
+      var myScaleLine = new ol.control.ScaleLine()
+      var myControls = ol.control.defaults({
+          attribution:true,
+          rotate:true,
+          zoom:true
+      }).extend([myOverviewMap,myScaleLine])
 
       var map = new ol.Map({
         target: 'map',
@@ -24,6 +31,7 @@
             source: new ol.source.Stamen({layer: 'terrain'})
         })
     ],
+        controls: myControls,
         view: new ol.View({
           center: ol.proj.fromLonLat([-106.298281, 35.892752]),
           zoom: 12
