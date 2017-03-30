@@ -15,6 +15,8 @@
     <h2>Los Alamos, New Mexico</h2>
     <div id="map" class="map"></div>
     <script type="text/javascript">
+	    
+	    var projection = ol.proj.get('EPSG:3857');
       
       var myOverviewMap = new ol.control.OverviewMap ({collapsible:false, collapsed:false})
       var myScaleLine = new ol.control.ScaleLine()
