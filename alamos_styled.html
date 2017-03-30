@@ -24,6 +24,17 @@
           zoom:true
       }).extend([myOverviewMap,myScaleLine])
       
+      var states_single = new ol.layer.Image({
+	source: new ol.source.ImageWMS({
+		attributions: new ol.Attribution({
+			html: 'State Boundary Restructured - USGS, National Atlas Release 5-14-12'
+		}),
+		params: {'LAYERS':'global:statep010'},
+		url: 'http://mapper.internetmapping.net:8081/geoserver/global/wms?',
+		serverType: 'geoserver'
+	})
+})
+      
 var blocks_kml = new ol.layer.Vector({
 	source: new ol.source.Vector({
 		url: 'https://s3.amazonaws.com/kkb-web/data/tl_2010_35001_tabblock10.kml',
