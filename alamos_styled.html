@@ -37,20 +37,13 @@
 	})
 })
       
-var blocks_kml = new ol.layer.Vector({
-	source: new ol.source.Vector({
-		url: 'https://s3.amazonaws.com/kkb-web/data/tl_2010_35001_tabblock10.kml',
-		projection: projection,
-		format: new ol.format.KML()
-	})
-})
       
       var map = new ol.Map({
         target: 'map',
        layers: [
         new ol.layer.Tile({
             source: new ol.source.Stamen({layer: 'terrain'})
-        })
+        }),
     ],
         controls: myControls,
         view: new ol.View({
