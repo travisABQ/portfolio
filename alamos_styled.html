@@ -26,6 +26,14 @@
           zoom:true
       }).extend([myOverviewMap,myScaleLine])
       
+      var classroomCoord = [-106.624073,35.084280]
+      
+      var classroomPoint = new ol.geom.Point(ol.proj.fromLonLat(classroomCoord, projection));
+	    
+	    var classroomFeature = new ol.Feature({
+	geometry: classroomPoint
+})
+      
 var counties_kml = new ol.layer.Vector({
 	source: new ol.source.Vector({
 		url: 'https://s3.amazonaws.com/kkb-web/data/2007fe_35_county00.kml',
