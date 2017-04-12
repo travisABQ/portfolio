@@ -17,17 +17,6 @@
     <script type="text/javascript">
 	    
 	    var projection = ol.proj.get('EPSG:3857');
-	    
-	    var lonLat = new OpenLayers.LonLat( 35.893725, -106.295363 )
-          .transform(
-            new OpenLayers.Projection("EPSG:3857"), // transform from WGS 1984
-            map.getProjectionObject() // to Spherical Mercator Projection
-          );
-	    
-	    var markers = new OpenLayers.Layer.Markers( "Markers" );
-    map.addLayer(markers);
-    
-    markers.addMarker(new OpenLayers.Marker(lonLat));
 
       
       var myOverviewMap = new ol.control.OverviewMap ({collapsible:false, collapsed:false})
