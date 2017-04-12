@@ -23,6 +23,12 @@
             new OpenLayers.Projection("EPSG:3857"), // transform from WGS 1984
             map.getProjectionObject() // to Spherical Mercator Projection
           );
+	    
+	    var markers = new OpenLayers.Layer.Markers( "Markers" );
+    map.addLayer(markers);
+    
+    markers.addMarker(new OpenLayers.Marker(lonLat));
+
       
       var myOverviewMap = new ol.control.OverviewMap ({collapsible:false, collapsed:false})
       var myScaleLine = new ol.control.ScaleLine()
@@ -32,10 +38,6 @@
           zoom:true
       }).extend([myOverviewMap,myScaleLine])
       
-var markers = new OpenLayers.Layer.Markers( "Markers" );
-    map.addLayer(markers);
-    
-    markers.addMarker(new OpenLayers.Marker(lonLat));
 
       
 var counties_kml = new ol.layer.Vector({
