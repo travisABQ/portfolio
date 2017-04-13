@@ -49,7 +49,11 @@
 });
      
       var alamosCoord = [-106.295363, 35.893725]
+      var pajaritoCoord = [-106.400613, 35.887789]
+	
     var alamosPoint = new ol.geom.Point(ol.proj.fromLonLat(alamosCoord, projection));
+    var pajaritoPoint = new ol.geom.Point(ol.proj.fromLonLat(pajaritoCoord, projection));
+	    
 	    var alamosFeature = new ol.Feature({
 	geometry: alamosPoint
 		    })
