@@ -26,6 +26,9 @@
           zoom:true
       }).extend([myOverviewMap,myScaleLine])
       
+      var stroke = new ol.style.Stroke({color: 'black', width: 2});
+      var fill = new ol.style.Fill({color: 'red'});
+      
       var alamos_style = new ol.style.Style({
 	image: new ol.style.RegularShape({
 	 fill: fill,
