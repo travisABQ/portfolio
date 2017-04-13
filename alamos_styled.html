@@ -57,12 +57,18 @@
 	    var alamosFeature = new ol.Feature({
 	geometry: alamosPoint
 		    })
+	    
+	     var pajaritoFeature = new ol.Feature({
+	geometry: pajaritoPoint
+		    })
 		    
 		    var local_geoms = new ol.layer.Vector({
 	source: new ol.source.Vector({
 		features: [alamosFeature]
 	}),
 			    style: alamos_style
+			    
+			    
 })
       
 var counties_kml = new ol.layer.Vector({
