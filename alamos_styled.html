@@ -48,7 +48,8 @@
 		    var local_geoms = new ol.layer.Vector({
 	source: new ol.source.Vector({
 		features: [alamosFeature]
-	})     
+	}),
+			    style: alamos_style
 })
       
 var counties_kml = new ol.layer.Vector({
@@ -64,10 +65,7 @@ var counties_kml = new ol.layer.Vector({
       
       var map = new ol.Map({
         target: 'map',
-       layers: [basemap, counties_kml,
-	      new ol.layer.Tile({
-	      source: new ol.source.OSM()
-      }),local_geoms],
+       layers: [basemap, counties_kml, local_geoms],
         controls: myControls,
         view: new ol.View({
           center: ol.proj.fromLonLat([-106.446161, 35.775394]),
