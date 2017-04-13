@@ -25,6 +25,18 @@
           rotate:true,
           zoom:true
       }).extend([myOverviewMap,myScaleLine])
+     
+      var alamosCoord = [35.893725,-106.295363]
+      var alamosPoint = new ol.geom.Point(ol.proj.fromLonLat(alamosCoord, projection));
+	    var alamosFeature = new ol.Feature({
+	geometry: alamosPoint
+		    })
+		    
+		    var local_geoms = new ol.layer.Vector({
+	source: new ol.source.Vector({
+		features: [alamosFeature,officeFeature,bldgFeature,pathFeature]
+	})
+
       
 })
       
