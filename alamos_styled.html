@@ -25,6 +25,16 @@
           rotate:true,
           zoom:true
       }).extend([myOverviewMap,myScaleLine])
+      
+      var alamos_style = new ol.style.Style({
+	image: new ol.style.RegularShape({
+	 fill: fill,
+		stroke: stroke,
+		points: 4,
+		radius: 4,
+		angle: Math.PI / 4
+	}),
+});
      
       var alamosCoord = [35.893725,-106.295363]
       var alamosPoint = new ol.geom.Point(ol.proj.fromLonLat(alamosCoord, projection));
@@ -52,6 +62,10 @@ var counties_kml = new ol.layer.Vector({
       var map = new ol.Map({
         target: 'map',
        layers: [basemap, counties_kml],
+	      new ol.layer.Tile({
+	      source: new ol.source.OSM()
+      }),border_kml
+	,local_geoms],
         controls: myControls,
         view: new ol.View({
           center: ol.proj.fromLonLat([-106.446161, 35.775394]),
