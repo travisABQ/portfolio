@@ -61,11 +61,10 @@ var counties_kml = new ol.layer.Vector({
       
       var map = new ol.Map({
         target: 'map',
-       layers: [basemap, counties_kml],
+       layers: [basemap, counties_kml,
 	      new ol.layer.Tile({
 	      source: new ol.source.OSM()
-      }),border_kml
-	,local_geoms],
+      }),local_geoms],
         controls: myControls,
         view: new ol.View({
           center: ol.proj.fromLonLat([-106.446161, 35.775394]),
