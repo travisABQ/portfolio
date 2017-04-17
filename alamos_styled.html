@@ -28,6 +28,10 @@
       
       var stroke = new ol.style.Stroke({color: 'black', width: 2});
       var fill = new ol.style.Fill({color: 'red'});
+	    
+	    var strokeStyle = new ol.style.Style({
+		stroke:stroke
+		    })
       
       var alamos_style = new ol.style.Style({
 	image: new ol.style.RegularShape({
@@ -90,7 +94,7 @@
 		    
 		    var local_geoms = new ol.layer.Vector({
 	source: new ol.source.Vector({
-		features: [alamosFeature, pajaritoFeature, caballoFeature, pathFeature]
+		features: [alamosFeature, pajaritoFeature, caballoFeature]
 	}),
 			    style: alamos_style
 			    
@@ -98,9 +102,9 @@
 		    
 		        var local_paths = new ol.layer.Vector({
 	source: new ol.source.Vector({
-		features: [alamosFeature, pajaritoFeature, caballoFeature, pathFeature]
+		features: [pathFeature]
 	}),
-				style: alamos_style
+				style: strokeStyle
 				
 			})
       
