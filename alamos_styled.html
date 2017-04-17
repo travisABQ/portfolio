@@ -91,7 +91,17 @@
 	]).transform('EPSG:4326',projection), // deal with projection issues between my features and and the map projection
 	description:"Pajarito Ski"
 })
-		    
+		 
+	     var pathFeature1 = new ol.Feature({
+	geometry: new ol.geom.LineString([
+		alamosCoord,
+		[-106.295363,35.893725],
+		[-106.365342,35.953521],
+		caballoCoord   				
+	]).transform('EPSG:4326',projection), // deal with projection issues between my features and and the map projection
+	description:"Caballo Peak"
+})
+	     
 		    var local_geoms = new ol.layer.Vector({
 	source: new ol.source.Vector({
 		features: [alamosFeature, pajaritoFeature, caballoFeature]
@@ -102,7 +112,7 @@
 		    
 		        var local_paths = new ol.layer.Vector({
 	source: new ol.source.Vector({
-		features: [pathFeature]
+		features: [pathFeature,pathFeature1]
 	}),
 				style: strokeStyle
 				
