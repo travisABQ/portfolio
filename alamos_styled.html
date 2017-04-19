@@ -147,9 +147,19 @@ var counties_kml = new ol.layer.Vector({
 	})
 })
       
+      var local_paths = new ol.layer.Vector({
+	source: new ol.source.Vector({
+		features: [pathFeature,pathFeature1]
+	}),
+				style: strokeStyle
+				
+			})
+      
+      var basemap_tiled
+      
       var map = new ol.Map({
         target: 'map',
-       layers: [basemap_tiled, basemap, counties_kml, local_geoms, local_paths],
+       layers: [basemap_tiled, counties_kml, local_geoms, local_paths],
         controls: myControls,
         view: new ol.View({
           center: ol.proj.fromLonLat([-106.295363, 35.893725]),
