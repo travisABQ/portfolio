@@ -18,11 +18,26 @@
     <title>OpenLayers example</title>
   </head>
   <body>
-    <h2>Los Alamos, New Mexico central point to Pajarito Mountain and Caballo Peak, two promiment mountains in the vicinity</h2>
+    <h2>Title Here</h2>
     <div id="map" class="map"></div>
     <script type="text/javascript">
 	    
 	    var projection = ol.proj.get('EPSG:3857');
+	    
+	    var parks = new ol.layer.Tile({
+  source: new ol.source.TileWMS({
+    attributions: new ol.Attribution({
+      html: 'Park Data'
+    }),
+    params: {'LAYERS':'ws_tmcwhorter:CO_StatePark'},
+    url: 'http://mapper.internetmapping.net:8081/geoserver/ows?SERVICE=WMS&',
+    serverType: 'geoserver',
+    projection: projection,
+    format: new ol.format.KML({
+      extractStyles:false
+    })
+  }),
+})
       
       var myOverviewMap = new ol.control.OverviewMap ({collapsible:false, collapsed:false})
       var myScaleLine = new ol.control.ScaleLine()
@@ -39,100 +54,10 @@
 		stroke:stroke
 		    })
       
-      var alamos_style = new ol.style.Style({
-	image: new ol.style.RegularShape({
-	 fill: fill,
-		stroke: stroke,
-		points: 4,
-		radius: 4,
-		angle: Math.PI / 4
-	})
-});
-	    var pajarito_style = new ol.style.Style({
-	image: new ol.style.RegularShape({
-	 fill: fill,
-		stroke: stroke,
-		points: 4,
-		radius: 4,
-		angle: Math.PI / 4
-	})
-});
      
-	    var caballo_style = new ol.style.Style({
-	image: new ol.style.RegularShape({
-	 fill: fill,
-		stroke: stroke,
-		points: 4,
-		radius: 4,
-		angle: Math.PI / 4
-	})
-});
-	    
-      var alamosCoord = [-106.295363, 35.893725]
-      var pajaritoCoord = [-106.400613, 35.887789]
-      var caballoCoord = [ -106.365342, 35.953521]
-	
-    var alamosPoint = new ol.geom.Point(ol.proj.fromLonLat(alamosCoord, projection));
-    var pajaritoPoint = new ol.geom.Point(ol.proj.fromLonLat(pajaritoCoord, projection));
-    var caballoPoint = new ol.geom.Point(ol.proj.fromLonLat(caballoCoord, projection));
-	    
-	    var alamosFeature = new ol.Feature({
-	geometry: alamosPoint
-		    })
-	    
-	     var pajaritoFeature = new ol.Feature({
-	geometry: pajaritoPoint
-		    })
-	     
-	     var caballoFeature = new ol.Feature({
-	geometry: caballoPoint
-		    })
-	     
-	     var pathFeature = new ol.Feature({
-	geometry: new ol.geom.LineString([
-		alamosCoord,
-		[-106.295363,35.893725],
-		[-106.400613,35.887789],
-		pajaritoCoord   				
-	]).transform('EPSG:4326',projection), // deal with projection issues between my features and and the map projection
-	description:"Pajarito Ski"
-})
-		 
-	     var pathFeature1 = new ol.Feature({
-	geometry: new ol.geom.LineString([
-		alamosCoord,
-		[-106.295363,35.893725],
-		[-106.365342,35.953521],
-		caballoCoord   				
-	]).transform('EPSG:4326',projection), // deal with projection issues between my features and and the map projection
-	description:"Caballo Peak"
-})
-	     
-		    var local_geoms = new ol.layer.Vector({
-	source: new ol.source.Vector({
-		features: [alamosFeature, pajaritoFeature, caballoFeature]
-	}),
-			    style: alamos_style
-			    
-})
-		    
-		        var local_paths = new ol.layer.Vector({
-	source: new ol.source.Vector({
-		features: [pathFeature,pathFeature1]
-	}),
-				style: strokeStyle
-				
-			})
       
-			
-			
-var counties_kml = new ol.layer.Vector({
-	source: new ol.source.Vector({
-		url: 'https://s3.amazonaws.com/kkb-web/data/2007fe_35_county00.kml',
-		projection: projection,
-		format: new ol.format.KML()
-	})
-})
+		
+
       var basemap =  new ol.layer.Tile({
             source: new ol.source.Stamen({layer: 'terrain'})
         })
@@ -165,7 +90,7 @@ var counties_kml = new ol.layer.Vector({
       
       var map = new ol.Map({
         target: 'map',
-       layers: [basemap_tiled, counties_kml, local_geoms, local_paths],
+       layers: [parks, basemap_tiled, local_geoms, local_paths],
         controls: myControls,
         view: new ol.View({
           center: ol.proj.fromLonLat([-105.637513, 39.219793]),
