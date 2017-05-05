@@ -90,7 +90,7 @@
       
       var map = new ol.Map({
         target: 'map',
-       layers: [counties, basemap_tiled, parks],
+       layers: [basemap_tiled, parks, counties],
         controls: myControls,
         view: new ol.View({
           center: ol.proj.fromLonLat([-105.637513, 39.219793]),
