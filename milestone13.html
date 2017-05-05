@@ -33,6 +33,20 @@
       }).extend([myOverviewMap,myScaleLine])
       
 	    		
+      var parks = new ol.layer.Tile({
+  source: new ol.source.TileWMS({
+    attributions: new ol.Attribution({
+      html: 'Parks'
+    }),
+    params: {'LAYERS':'ws_tmcwhorter:CO_StatePark'},
+    url: 'http://mapper.internetmapping.net:8081/geoserver/ows?SERVICE=WMS&',
+    serverType: 'geoserver',
+    projection: projection,
+    format: new ol.format.KML({
+      extractStyles:false
+    })
+  }),
+})
 			
       var basemap =  new ol.layer.Tile({
             source: new ol.source.Stamen({layer: 'terrain'})
@@ -60,7 +74,7 @@
       
       var map = new ol.Map({
         target: 'map',
-       layers: [basemap_tiled],
+       layers: [basemap_tiled, parks],
         controls: myControls,
         view: new ol.View({
           center: ol.proj.fromLonLat([-105.637513, 39.219793]),
