@@ -1,33 +1,13 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <link rel="stylesheet" href="https://openlayers.org/en/v4.0.1/css/ol.css" type="text/css">
-    <style>
-      .map {
-        height: 650px;
-        width: 100%;
-      }
-	    
-	    .ol-scale-line {
-		    top: 750px;
-	    }
-		
-			
-    </style>
-    <script src="https://openlayers.org/en/v4.0.1/build/ol.js" type="text/javascript"></script>
-    <title>OpenLayers example</title>
-  </head>
-  <body>
-    <h2>Title Here</h2>
-    <div id="map" class="map"></div>
-    <script type="text/javascript">
-	    
-	    var projection = ol.proj.get('EPSG:3857');
-	    
-	    var parks = new ol.layer.Tile({
+var projection = ol.proj.get('EPSG:4326');
+
+var basemap = new ol.layer.Tile({
+  source: new ol.source.OSM()
+});
+
+var parks = new ol.layer.Tile({
   source: new ol.source.TileWMS({
     attributions: new ol.Attribution({
-      html: 'Park Data'
+      html: 'Parks'
     }),
     params: {'LAYERS':'ws_tmcwhorter:CO_StatePark'},
     url: 'http://mapper.internetmapping.net:8081/geoserver/ows?SERVICE=WMS&',
@@ -38,66 +18,19 @@
     })
   }),
 })
-      
-      var myOverviewMap = new ol.control.OverviewMap ({collapsible:false, collapsed:false})
-      var myScaleLine = new ol.control.ScaleLine()
-      var myControls = ol.control.defaults({
-          attribution:true,
-          rotate:true,
-          zoom:true
-      }).extend([myOverviewMap,myScaleLine])
-      
-      var stroke = new ol.style.Stroke({color: 'black', width: 2});
-      var fill = new ol.style.Fill({color: 'red'});
-	    
-	    var strokeStyle = new ol.style.Style({
-		stroke:stroke
-		    })
-      
-     
-      
-		
 
-      var basemap =  new ol.layer.Tile({
-            source: new ol.source.Stamen({layer: 'terrain'})
-        })
-      
-      var basemap_tiled = new ol.layer.Tile({
-	source: new ol.source.TileWMS({
-	url: 'https://basemap.nationalmap.gov/arcgis/services/USGSTopo/MapServer/WmsServer?',
-	  params: {
-		LAYERS: 0,
-		FORMAT: 'image/png',
-		TRANSPARENT: true
-	  },
-	  attributions: [
-	    new ol.Attribution({
-		  html: 'Data provided by the <a href="http://basemap.nationalmap.gov">National Map</a>.'
-		})
-	  ]
-	})
-})
-      
-      var local_paths = new ol.layer.Vector({
-	source: new ol.source.Vector({
-		features: [pathFeature,pathFeature1]
-	}),
-				style: strokeStyle
-				
-			})
-      
-      var basemap_tiled
-      
-      var map = new ol.Map({
-        target: 'map',
-       layers: [parks, basemap_tiled, local_geoms, local_paths],
-        controls: myControls,
-        view: new ol.View({
-          center: ol.proj.fromLonLat([-105.637513, 39.219793]),
-          zoom: 7
-        })
-      });
- 
-    </script>
-  </body>
-</html>
+
+
+var Over_Layers = new ol.layer.Group({
+    layers: [
+        basemap, parks
+    ]
+});
+
+var map = new ol.Map({
+  target: 'map_canvas',
+  view: new ol.View({
+    center: ol.proj.fromLonLat([-105.637513, 39.219793]),
+    zoom: 10
+  })
+});
