@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" href="https://openlayers.org/en/v4.0.1/css/ol.css" type="text/css">
+    <style>
+      .map {
+        height: 650px;
+        width: 100%;
+      }
+	    
+	    .ol-scale-line {
+		    top: 750px;
+	    }
+		
+			
+    </style>
+    <script src="https://openlayers.org/en/v4.0.1/build/ol.js" type="text/javascript"></script>
+    <title></title>
+  </head>
+  <body>
+    <h2>A map of Colorado that highlights the national parks, streams, lakes, and roads that are overlain on top of a counties layer. </h2>
+    <div id="map" class="map"></div>
+    <script type="text/javascript">
+	    
+	    var projection = ol.proj.get('EPSG:4326');
+      
+      var myOverviewMap = new ol.control.OverviewMap ({collapsible:false, collapsed:false})
+      var myScaleLine = new ol.control.ScaleLine()
+      var myControls = ol.control.defaults({
+          attribution:true,
+          rotate:true,
+          zoom:true
+      }).extend([myOverviewMap,myScaleLine])
+      
+	
+      var basemap =  new ol.layer.Tile({
+            source: new ol.source.Stamen({layer: 'terrain'})
+        })
+      
+      var basemap_tiled = new ol.layer.Tile({
+	source: new ol.source.TileWMS({
+	url: 'https://basemap.nationalmap.gov/arcgis/services/USGSTopo/MapServer/WmsServer?',
+	  params: {
+		LAYERS: 0,
+		FORMAT: 'image/png',
+		TRANSPARENT: true
+	  },
+	  attributions: [
+	    new ol.Attribution({
+		  html: 'Data provided by the <a href="http://basemap.nationalmap.gov">National Map</a>.'
+		})
+	  ]
+	})
+})
+      
+
+      
+      var basemap_tiled
+      
+      var map = new ol.Map({
+        target: 'map',
+       layers: [basemap_tiled],
+        controls: myControls,
+        view: new ol.View({
+          center: ol.proj.fromLonLat([-105.637513, 39.219793]),
+          zoom: 7
+        })
+      });
+ 
+    </script>
+  </body>
+</html>
