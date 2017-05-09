@@ -62,6 +62,21 @@
   }),
 })
       
+      var a5shp = new ol.layer.Tile({
+  source: new ol.source.TileWMS({
+    attributions: new ol.Attribution({
+      html: 'shp 1'
+    }),
+    params: {'LAYERS':'ws_tmcwhorter:35106-A5_CONT'},
+    url: 'http://mapper.internetmapping.net:8081/geoserver/ows?SERVICE=WMS&',
+    serverType: 'geoserver',
+    projection: projection,
+    format: new ol.format.KML({
+      extractStyles:false
+    })
+  }),
+})
+      
 	
       var basemap =  new ol.layer.Tile({
             source: new ol.source.Stamen({layer: 'terrain'})
@@ -89,7 +104,7 @@
       
       var map = new ol.Map({
         target: 'map',
-       layers: [basemap_tiled, a5tif, a6tif],
+       layers: [basemap_tiled, a5shp, a5tif, a6tif],
         controls: myControls,
         view: new ol.View({
           center: ol.proj.fromLonLat([-106.612633, 35.101432]),
