@@ -32,35 +32,9 @@
           zoom:true
       }).extend([myOverviewMap,myScaleLine])
       
-      var a5tif = new ol.layer.Tile({
-  source: new ol.source.TileWMS({
-    attributions: new ol.Attribution({
-      html: 'Tiff 1'
-    }),
-    params: {'LAYERS':'ws_tmcwhorter:35106-A5'},
-    url: 'http://mapper.internetmapping.net:8081/geoserver/ows?SERVICE=WMS&',
-    serverType: 'geoserver',
-    projection: projection,
-    format: new ol.format.KML({
-      extractStyles:false
-    })
-  }),
-})
+
       
-      var a6tif = new ol.layer.Tile({
-  source: new ol.source.TileWMS({
-    attributions: new ol.Attribution({
-      html: 'Tiff 2'
-    }),
-    params: {'LAYERS':'ws_tmcwhorter:35106-A6'},
-    url: 'http://mapper.internetmapping.net:8081/geoserver/ows?SERVICE=WMS&',
-    serverType: 'geoserver',
-    projection: projection,
-    format: new ol.format.KML({
-      extractStyles:false
-    })
-  }),
-})
+
       
       var a5shp = new ol.layer.Tile({
   source: new ol.source.TileWMS({
@@ -77,20 +51,6 @@
   }),
 })
       
-      var a6shp = new ol.layer.Tile({
-  source: new ol.source.TileWMS({
-    attributions: new ol.Attribution({
-      html: 'shp 2'
-    }),
-    params: {'LAYERS':'ws_tmcwhorter:35106-A6_CONT'},
-    url: 'http://mapper.internetmapping.net:8081/geoserver/ows?SERVICE=WMS&',
-    serverType: 'geoserver',
-    projection: projection,
-    format: new ol.format.KML({
-      extractStyles:false
-    })
-  }),
-})
       
     var tiger = new ol.layer.Tile({
   source: new ol.source.TileWMS({
@@ -133,7 +93,7 @@
       
       var map = new ol.Map({
         target: 'map',
-       layers: [basemap_tiled, a5tif, a6tif, tiger, a6shp, a5shp, ],
+       layers: [basemap_tiled, tiger, a5shp ],
         controls: myControls,
         view: new ol.View({
           center: ol.proj.fromLonLat([-106.612633, 35.101432]),
