@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" href="https://openlayers.org/en/v4.0.1/css/ol.css" type="text/css">
+    <style>
+      .map {
+        height: 650px;
+        width: 100%;
+      }
+	    
+	    .ol-scale-line {
+		    top: 750px;
+	    }
+		
+			
+    </style>
+    <script src="https://openlayers.org/en/v4.0.1/build/ol.js" type="text/javascript"></script>
+    <title>New Mexico</title>
+  </head>
+  <body>
+    <h2>A map of Albuquerque with layers </h2>
+    <div id="map" class="map"></div>
+    <script type="text/javascript">
+	    
+	    var projection = ol.proj.get('EPSG:4326');
+      
+      var myOverviewMap = new ol.control.OverviewMap ({collapsible:false, collapsed:false})
+      var myScaleLine = new ol.control.ScaleLine()
+      var myControls = ol.control.defaults({
+          attribution:true,
+          rotate:true,
+          zoom:true
+      }).extend([myOverviewMap,myScaleLine])
+      
+      var a5tif = new ol.layer.Tile({
+  source: new ol.source.TileWMS({
+    attributions: new ol.Attribution({
+      html: 'Tiff 1'
+    }),
+    params: {'LAYERS':'ws_tmcwhorter:35106-A5'},
+    url: 'http://mapper.internetmapping.net:8081/geoserver/ows?SERVICE=WMS&',
+    serverType: 'geoserver',
+    projection: projection,
+    format: new ol.format.KML({
+      extractStyles:false
+    })
+  }),
+})
+      
+      var a6tif = new ol.layer.Tile({
+  source: new ol.source.TileWMS({
+    attributions: new ol.Attribution({
+      html: 'Tiff 2'
+    }),
+    params: {'LAYERS':'ws_tmcwhorter:35106-A6'},
+    url: 'http://mapper.internetmapping.net:8081/geoserver/ows?SERVICE=WMS&',
+    serverType: 'geoserver',
+    projection: projection,
+    format: new ol.format.KML({
+      extractStyles:false
+    })
+  }),
+})
+      
+      var a5shp = new ol.layer.Tile({
+  source: new ol.source.TileWMS({
+    attributions: new ol.Attribution({
+      html: 'shp 1'
+    }),
+    params: {'LAYERS':'ws_tmcwhorter:35106-A5_CONT'},
+    url: 'http://mapper.internetmapping.net:8081/geoserver/ows?SERVICE=WMS&',
+    serverType: 'geoserver',
+    projection: projection,
+    format: new ol.format.KML({
+      extractStyles:false
+    })
+  }),
+})
+      
+      var a6shp = new ol.layer.Tile({
+  source: new ol.source.TileWMS({
+    attributions: new ol.Attribution({
+      html: 'shp 2'
+    }),
+    params: {'LAYERS':'ws_tmcwhorter:35106-A6_CONT'},
+    url: 'http://mapper.internetmapping.net:8081/geoserver/ows?SERVICE=WMS&',
+    serverType: 'geoserver',
+    projection: projection,
+    format: new ol.format.KML({
+      extractStyles:false
+    })
+  }),
+})
+      
+    var tiger = new ol.layer.Tile({
+  source: new ol.source.TileWMS({
+    attributions: new ol.Attribution({
+      html: 'tiger'
+    }),
+    params: {'LAYERS':'ws_tmcwhorter:tgr2006se_bern_lka'},
+    url: 'http://mapper.internetmapping.net:8081/geoserver/ows?SERVICE=WMS&',
+    serverType: 'geoserver',
+    projection: projection,
+    format: new ol.format.KML({
+      extractStyles:false
+    })
+  }),
+})
+	
+      var basemap =  new ol.layer.Tile({
+            source: new ol.source.Stamen({layer: 'terrain'})
+        })
+      
+      var basemap_tiled = new ol.layer.Tile({
+	source: new ol.source.TileWMS({
+	url: 'https://basemap.nationalmap.gov/arcgis/services/USGSTopo/MapServer/WmsServer?',
+	  params: {
+		LAYERS: 0,
+		FORMAT: 'image/png',
+		TRANSPARENT: true
+	  },
+	  attributions: [
+	    new ol.Attribution({
+		  html: 'Data provided by the <a href="http://basemap.nationalmap.gov">National Map</a>.'
+		})
+	  ]
+	})
+})
+      
+
+      
+      var basemap_tiled
+      
+      var map = new ol.Map({
+        target: 'map',
+       layers: [basemap_tiled, a5tif, a6tif, tiger, a6shp, a5shp, ],
+        controls: myControls,
+        view: new ol.View({
+          center: ol.proj.fromLonLat([-106.612633, 35.101432]),
+          zoom: 11
+        })
+      });
+ 
+    </script>
+  </body>
+</html>
